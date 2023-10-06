@@ -10,10 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 8743990920271821120}
   - component: {fileID: 669341062028554634}
-  - component: {fileID: 8468665246310172965}
   - component: {fileID: 8565245923407082937}
   - component: {fileID: 2791405597832773577}
   - component: {fileID: -401889939031415945}
+  - component: {fileID: 8468665246310172965}
+  - component: {fileID: 2020911739780154609}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -63,19 +64,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &8468665246310172965
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 437879951498556111}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0544bd71d0102c48830869abcb48d2e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 5
 --- !u!212 &8565245923407082937
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -185,7 +173,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 4, y: 4}
+    oldSize: {x: 2, y: 2}
     newSize: {x: 4, y: 4}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -193,19 +181,45 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.29999998, y: 0.35999998}
-      - {x: 0.29999998, y: 0.38}
-      - {x: -0.02, y: 0.64}
-      - {x: -0.16, y: 0.64}
-      - {x: -0.22, y: 0.59999996}
-      - {x: -0.17999999, y: 0.34}
-      - {x: -0.44, y: 0.12}
-      - {x: -0.34, y: -0.06}
-      - {x: -0.22, y: -0.099999994}
-      - {x: -0.52, y: -0.26}
-      - {x: -0.52, y: -0.42}
-      - {x: -0.42, y: -0.48}
-      - {x: 0.29999998, y: -0.48}
-      - {x: 0.29999998, y: -0.04}
-      - {x: 0.26, y: 0.26}
+    - - {x: 0.14999999, y: 0.17999999}
+      - {x: 0.14999999, y: 0.19}
+      - {x: -0.01, y: 0.32}
+      - {x: -0.08, y: 0.32}
+      - {x: -0.11, y: 0.29999998}
+      - {x: -0.089999996, y: 0.17}
+      - {x: -0.22, y: 0.06}
+      - {x: -0.17, y: -0.03}
+      - {x: -0.11, y: -0.049999997}
+      - {x: -0.26, y: -0.13}
+      - {x: -0.26, y: -0.21}
+      - {x: -0.21, y: -0.24}
+      - {x: 0.14999999, y: -0.24}
+      - {x: 0.14999999, y: -0.02}
+      - {x: 0.13, y: 0.13}
   m_UseDelaunayMesh: 0
+--- !u!114 &8468665246310172965
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 437879951498556111}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0544bd71d0102c48830869abcb48d2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 5
+--- !u!114 &2020911739780154609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 437879951498556111}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: edc388b0da0fc464aae55c8458306458, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jumpPower: 0
