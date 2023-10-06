@@ -41,14 +41,12 @@ public class JumpController : MonoBehaviour
             _animator.SetBool(IsJump, true);
             // di chuuyen gameObject
             _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x, jumpPower);
-            Debug.Log("nhay lần 1 + "+ jumpCounter);
         }
         else if (Input.GetKeyDown(KeyCode.Space) && _rigidbody2D.velocity.y < 0 && jumpCounter == 1)
         {
             _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x, jumpPower * 1.2f);
             jumpCounter--;
-            Debug.Log("nhay lần 2 + "+ jumpCounter);
-
+            fallScale = 10f;
         }
     }
 
@@ -57,10 +55,10 @@ public class JumpController : MonoBehaviour
         if (_rigidbody2D.velocity.y < 0)
         {
             _rigidbody2D.AddForce(Physics2D.gravity*_rigidbody2D.mass*fallScale);
+            fallScale = 0.25f;
         }
         if (isGround() && _rigidbody2D.velocity.y == 0)
         {
-            Debug.Log("rơi chạm đất");
             _animator.SetBool(IsJump, false);
             jumpCounter = 1;
         }
