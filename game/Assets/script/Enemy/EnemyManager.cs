@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
-using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,11 +11,11 @@ public class EnemyManager : MonoBehaviour
 
     SpriteRenderer sprite;
     public Animator _animator;
-
     public int attackDamge;
     public int currentHeath;
 
-
+    public float time = 0.75f;
+    
     private static readonly int IsDie = Animator.StringToHash("isDie");
     private static readonly int IsHit = Animator.StringToHash("isHit");
 
@@ -42,10 +41,19 @@ public class EnemyManager : MonoBehaviour
             Die();
         }
     }
-
     void Die()
     {
-        _animator.SetBool(IsDie, true);
+        _animator.Play("Death");
+        StartCoroutine(setTimeSetActive(time));
+
+    }
+    
+    private IEnumerator setTimeSetActive(float timer)
+    {  
+        Debug.Log(timer);
+        //Wait for 14 secs.
+        yield return new WaitForSeconds(time);
+        //Turn My game object that is set to false(off) to True(on).
         this.gameObject.SetActive(false);
     }
 }
