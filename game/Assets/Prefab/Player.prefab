@@ -227,9 +227,9 @@ MonoBehaviour:
   jumpPower: 5
   groundLayer:
     serializedVersion: 2
-    m_Bits: 64
-  fallScaleOne: 0.3
-  fallScaleTwo: 0.5
+    m_Bits: 0
+  fallScaleOne: 1.5
+  fallScaleTwo: 5
   castDistane: 0.25
   boxSize: {x: 0.3, y: 0.1}
 --- !u!114 &3172569305994305892
@@ -246,6 +246,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitBox: {fileID: 2039852426170274325}
   attackRange: 0.35
+  attackDame: 20
   enemyLayer:
     serializedVersion: 2
     m_Bits: 128

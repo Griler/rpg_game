@@ -8,8 +8,8 @@ public class AttackController : MonoBehaviour
 {
     public Transform hitBox;
     public float attackRange = 0.35f;
+    public int attackDamge = 10;
     public LayerMask enemyLayer;
-
     private Animator _animator;
     private static readonly int IsAttack = Animator.StringToHash("isAttack");
 
@@ -35,14 +35,14 @@ public class AttackController : MonoBehaviour
                 attackRange, enemyLayer);
             foreach (Collider2D enemy in hitEnemys)
             {
-                enemy.GetComponent<EnemyManager>().TakeDamge(20);
+                enemy.GetComponent<EnemyManager>().TakeDamge(attackDamge);
                 Debug.Log("trung quai");
             }
         }
     }
-
+    /*
     void OnDrawGizmosSelected()
     {
         Gizmos.DrawWireSphere(hitBox.position, attackRange);
-    }
+    }*/
 }

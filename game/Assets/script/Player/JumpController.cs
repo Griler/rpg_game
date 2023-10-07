@@ -11,8 +11,8 @@ public class JumpController : MonoBehaviour
     private Rigidbody2D _rigidbody2D;
 
     private int jumpCounter = 1;
-    public float fallScaleOne = 0.3f;
-    public float fallScaleTwo = 0.5f;
+    public float fallScaleOne = 1.5f;
+    public float fallScaleTwo = 5f;
     private static readonly int IsJump = Animator.StringToHash("isJump");
     private static readonly int YVelocity = Animator.StringToHash("yVelocity");
 
@@ -54,12 +54,12 @@ public class JumpController : MonoBehaviour
     {
         if (_rigidbody2D.velocity.y < 0)
         {
-            _rigidbody2D.AddForce(Physics2D.gravity * _rigidbody2D.mass * fallScaleOne);
+            _rigidbody2D.velocity += Vector2.up * Physics2D.gravity.y * fallScaleOne*Time.deltaTime;
         }
 
         if (_rigidbody2D.velocity.y < 0 && jumpCounter == 0)
         {
-            _rigidbody2D.AddForce(Physics2D.gravity * _rigidbody2D.mass * fallScaleTwo);
+            _rigidbody2D.velocity += Vector2.up * Physics2D.gravity.y * fallScaleTwo * Time.deltaTime;
         }
 
         if (isGround() && _rigidbody2D.velocity.y == 0)
