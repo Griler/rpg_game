@@ -5,18 +5,19 @@ using UnityEngine;
 
 public class JumpController : MonoBehaviour
 {
-    [SerializeField] private float jumpPower;
+    [SerializeField] private float jumpPower = 5;
     [SerializeField] private LayerMask groundLayer;
     private Animator _animator;
     private Rigidbody2D _rigidbody2D;
 
     private int jumpCounter = 1;
-    public float fallScale;
+    public float fallScaleOne = 0.3f;
+    public float fallScaleTwo = 0.7f;
     private static readonly int IsJump = Animator.StringToHash("isJump");
     private static readonly int YVelocity = Animator.StringToHash("yVelocity");
 
-    public float castDistane;
-    public Vector2 boxSize;
+    public float castDistane = 0.25f;
+    public Vector2 boxSize = new Vector2(0.3f,0.1f);
 
     // Start is called before the first frame update
     void Start()
@@ -46,7 +47,6 @@ public class JumpController : MonoBehaviour
         {
             _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x, jumpPower * 1.2f);
             jumpCounter--;
-            fallScale = 10f;
         }
     }
 
@@ -54,11 +54,17 @@ public class JumpController : MonoBehaviour
     {
         if (_rigidbody2D.velocity.y < 0)
         {
-            _rigidbody2D.AddForce(Physics2D.gravity*_rigidbody2D.mass*fallScale);
-            fallScale = 0.25f;
+            _rigidbody2D.AddForce(Physics2D.gravity * _rigidbody2D.mass * fallScaleOne);
         }
+
+        if (_rigidbody2D.velocity.y < 0 && jumpCounter == 0)
+        {
+            _rigidbody2D.AddForce(Physics2D.gravity * _rigidbody2D.mass * fallScaleTwo);
+        }
+
         if (isGround() && _rigidbody2D.velocity.y == 0)
         {
+            Debug.Log("chạm đất");
             _animator.SetBool(IsJump, false);
             jumpCounter = 1;
         }
@@ -77,8 +83,8 @@ public class JumpController : MonoBehaviour
         }
     }
 
-    /*private void OnDrawGizmos()
+    private void OnDrawGizmos()
     {
         Gizmos.DrawCube(transform.position - transform.up * castDistane, boxSize);
-    }*/
+    }
 }
