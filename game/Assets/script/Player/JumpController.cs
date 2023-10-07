@@ -12,7 +12,7 @@ public class JumpController : MonoBehaviour
 
     private int jumpCounter = 1;
     public float fallScaleOne = 0.3f;
-    public float fallScaleTwo = 0.7f;
+    public float fallScaleTwo = 0.5f;
     private static readonly int IsJump = Animator.StringToHash("isJump");
     private static readonly int YVelocity = Animator.StringToHash("yVelocity");
 
@@ -64,7 +64,6 @@ public class JumpController : MonoBehaviour
 
         if (isGround() && _rigidbody2D.velocity.y == 0)
         {
-            Debug.Log("chạm đất");
             _animator.SetBool(IsJump, false);
             jumpCounter = 1;
         }
