@@ -35,8 +35,7 @@ public class AttackController : MonoBehaviour
                 attackRange, enemyLayer);
             foreach (Collider2D enemy in hitEnemys)
             {
-                enemy.GetComponent<EnemyManager>().TakeDamge(attackDamge);
-                Debug.Log("trung quai");
+                enemy.GetComponent<EnemyManager>().TakeDamge(attackDamge); 
             }
         }
     }

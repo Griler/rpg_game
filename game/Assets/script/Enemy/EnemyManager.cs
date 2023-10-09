@@ -33,8 +33,7 @@ public class EnemyManager : MonoBehaviour
     // Update is called once per frame
     public void TakeDamge(int damge)
     {
-        Debug.Log("hello");
-        currentHeath -= damge;
+        currentHeath -= damge; 
         _animator.SetTrigger(IsHit);
         if (currentHeath <= 0)
         {
@@ -43,17 +42,21 @@ public class EnemyManager : MonoBehaviour
     }
     void Die()
     {
-        _animator.Play("Death");
-        StartCoroutine(setTimeSetActive(time));
+        _animator.SetBool("isDie",true);
+        StartCoroutine(setTimeSetActiveFalse(time));
 
     }
     
-    private IEnumerator setTimeSetActive(float timer)
+    
+    
+    private IEnumerator setTimeSetActiveFalse(float timer)
     {  
         Debug.Log(timer);
         //Wait for 14 secs.
         yield return new WaitForSeconds(time);
         //Turn My game object that is set to false(off) to True(on).
         this.gameObject.SetActive(false);
+        _animator.SetBool("isDie",false);
+
     }
 }
