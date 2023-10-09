@@ -7,7 +7,7 @@ using UnityEngine;
 public class AttackController : MonoBehaviour
 {
     public Transform hitBox;
-    public float attackRange = 0.35f;
+    public float attackRange = 0.3f;
     public int attackDamge = 10;
     public LayerMask enemyLayer;
     private Animator _animator;
@@ -39,9 +39,8 @@ public class AttackController : MonoBehaviour
             }
         }
     }
-    /*
     void OnDrawGizmosSelected()
     {
         Gizmos.DrawWireSphere(hitBox.position, attackRange);
-    }*/
+    }
 }

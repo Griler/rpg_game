@@ -12,5 +12,5 @@ public class EnemyTemplate : ScriptableObject
     
     public int attackDamge;
     public int maxHeath = 100;
-    
+    public float speed;
 }

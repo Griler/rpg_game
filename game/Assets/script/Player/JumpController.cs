@@ -81,9 +81,4 @@ public class JumpController : MonoBehaviour
             return false;
         }
     }
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.DrawCube(transform.position - transform.up * castDistane, boxSize);
-    }
 }
