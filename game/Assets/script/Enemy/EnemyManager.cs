@@ -41,16 +41,21 @@ public class EnemyManager : MonoBehaviour
     public void TakeDamge(int damge)
     {
         currentHeath -= damge;
-        _animator.SetTrigger(IsHurt);
-        if (currentHeath <= 0)
+        if (currentHeath > 0)
         {
-            Die();
+            this.GetComponent<EnemyPatrolling>().isHurt(true);
+            _animator.SetTrigger(IsHurt);
+            _animator.SetBool(IsWalk,false);
+            return;
         }
+        Die();
+
     }
 
     void Die()
     {
         _animator.SetBool(IsDie, true);
+        _animator.SetBool(IsWalk,false);
         StartCoroutine(setTimeSetActiveFalse(time));
     }
 
@@ -66,19 +71,12 @@ public class EnemyManager : MonoBehaviour
             return false;
         }
     }
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.DrawCube(transform.position - transform.up * castDistane, boxSize);
-    }
-
+    
     private IEnumerator setTimeSetActiveFalse(float timer)
     {
-        Debug.Log(timer);
-        //Wait for 14 secs.
-        yield return new WaitForSeconds(time);
+        yield return new WaitForSeconds(timer);
+        _animator.SetBool("isDie", false);
         //Turn My game object that is set to false(off) to True(on).
         this.gameObject.SetActive(false);
-        _animator.SetBool("isDie", false);
     }
 }

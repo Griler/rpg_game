@@ -7,14 +7,17 @@ public class EnemyPatrolling : MonoBehaviour
 {
     public Vector3[] patrolPoints;
     private Rigidbody2D _rigidbody2D;
-    public float speed;
+    public float speedMove;
     public int patrolPointCurrent;
     private Animator _animator;
 
+    private bool isTakeDamge = false;
     public Vector2 boxSize = new Vector2(0.4f, 0.55f);
 
-    public LayerMask playerLayer;
+    public EnemyMovement enemyMovement;
 
+    public float timer = 0.5f;
+    private float checkTimer = 0;
     bool onetime = true;
     private static readonly int IsHurt = Animator.StringToHash("isHurt");
 
@@ -23,8 +26,7 @@ public class EnemyPatrolling : MonoBehaviour
     {
         _animator = GetComponent<Animator>();
         _rigidbody2D = GetComponent<Rigidbody2D>();
-        speed = GetComponent<EnemyManager>().enemy_Template.speed;
-        Debug.Log(playerLayer.value);
+        speedMove = GetComponent<EnemyManager>().enemy_Template.speed;
     }
 
     // Update is called once per frame
@@ -34,25 +36,31 @@ public class EnemyPatrolling : MonoBehaviour
         {
             if (onetime)
             {
+                _animator.SetBool("isWalk", true);
                 inputArryPoint();
                 onetime = false;
-                _animator.Play("Walk");
             }
 
-            if (isHurt())
+            if (isTakeDamge && checkTimer <= timer)
+            {  movePatrol();
+                Debug.Log("hit");
+                checkTimer += Time.deltaTime;
+            }
+            else
             {
-                Debug.Log("trung quái");
-                movePatrol();
+                _animator.SetBool("isWalk",true);
+                movePatrol(speedMove);
+                isTakeDamge = false;
+                checkTimer = 0;
             }
         }
     }
 
-    void movePatrol()
+    void movePatrol(float speed = 0)
     {
         if (patrolPointCurrent == 0)
         {
-            transform.position = Vector2.MoveTowards(transform.position,
-                patrolPoints[patrolPointCurrent], speed * Time.deltaTime);
+            enemyMovement.Move(-1);
             if (Vector2.Distance(transform.position, patrolPoints[patrolPointCurrent]) < 0.2f)
             {
                 transform.localScale = new Vector3(-1, 1, 1);
@@ -62,8 +70,7 @@ public class EnemyPatrolling : MonoBehaviour
 
         if (patrolPointCurrent == 1)
         {
-            transform.position = Vector2.MoveTowards(transform.position,
-                patrolPoints[patrolPointCurrent], speed * Time.deltaTime);
+            enemyMovement.Move();
             if (Vector2.Distance(transform.position, patrolPoints[patrolPointCurrent]) < 0.2f)
             {
                 transform.localScale = new Vector3(1, 1, 1);
@@ -78,15 +85,14 @@ public class EnemyPatrolling : MonoBehaviour
         patrolPoints[1] = transform.position + Vector3.right * 1.25f;
     }
 
-    public bool isHurt(bool isHurt = false)
+    public void isHurt(bool hit = false)
     {
-        if (isHurt)
+        if (hit)
         {
-            return true;
+            isTakeDamge = true;
+            return;
         }
-        else
-        {
-            return false;
-        }
+
+        isTakeDamge = false;
     }
 }
