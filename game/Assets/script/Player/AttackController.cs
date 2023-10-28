@@ -6,7 +6,6 @@ using UnityEngine;
 
 public class AttackController : MonoBehaviour
 {
-    public Transform hitBox;
     public float attackRange = 0.3f;
     public int attackDamge = 10;
     public LayerMask enemyLayer;
@@ -23,24 +22,14 @@ public class AttackController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Attack();
+        if (Input.GetButtonDown("Fire1"))
+        {
+            Attack();
+        }
     }
 
     void Attack()
     {
-        if (Input.GetButtonDown("Fire1"))
-        {
-            _animator.SetTrigger(IsAttack);
-            Collider2D[] hitEnemys = Physics2D.OverlapCircleAll(hitBox.position, 
-                attackRange, enemyLayer);
-            foreach (Collider2D enemy in hitEnemys)
-            {
-                enemy.GetComponent<EnemyManager>().TakeDamge(attackDamge); 
-            }
-        }
-    }
-    void OnDrawGizmosSelected()
-    {
-        Gizmos.DrawWireSphere(hitBox.position, attackRange);
+        _animator.SetTrigger(IsAttack);
     }
 }
