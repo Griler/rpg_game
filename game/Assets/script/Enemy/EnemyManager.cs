@@ -1,11 +1,13 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class EnemyManager : MonoBehaviour
+public class EnemyManager : MonoBehaviour,IDamageable
 {
+    public HitBoxArea _hitBoxArea;
     public EnemyTemplate enemy_Template;
     //public Text name;
 
@@ -17,6 +19,7 @@ public class EnemyManager : MonoBehaviour
 
     public float time = 0.75f;
 
+    //check ground varriable
     public float castDistane = 0.25f;
     public Vector2 boxSize = new Vector2(0.3f, 0.1f);
     public LayerMask groundLayer;
@@ -37,10 +40,29 @@ public class EnemyManager : MonoBehaviour
         speed = enemy_Template.speed;
     }
 
-    // Update is called once per frame
-    public void TakeDamge(int damge)
+     void Update()
     {
-        currentHeath -= damge;
+        Attack();
+    }
+
+    void Attack()
+    {
+        if (_hitBoxArea.targets.Count > 0)
+        {
+            _animator.SetBool("canAttack",true);
+            _animator.SetBool("lockVelocity",true);
+        }
+        else
+        {
+            _animator.SetBool("canAttack",false);
+           _animator.SetBool("lockVelocity",false);
+
+        }
+    }
+    
+    public void Damage(int damage)
+    {
+        currentHeath -= damage;
         if (currentHeath > 0)
         {
             this.GetComponent<EnemyPatrolling>().isHurt(true);
@@ -49,9 +71,12 @@ public class EnemyManager : MonoBehaviour
             return;
         }
         Die();
-
     }
 
+    public int getDamage()
+    {
+        return attackDamge;
+    }
     void Die()
     {
         _animator.SetBool(IsDie, true);

@@ -2,13 +2,14 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class EnemyPatrolling : MonoBehaviour
 {
     public Vector3[] patrolPoints;
     private Rigidbody2D _rigidbody2D;
     public float speedMove;
-    public int patrolPointCurrent;
+    public static int patrolPointCurrent;
     private Animator _animator;
 
     private bool isTakeDamge = false;
@@ -27,6 +28,7 @@ public class EnemyPatrolling : MonoBehaviour
         _animator = GetComponent<Animator>();
         _rigidbody2D = GetComponent<Rigidbody2D>();
         speedMove = GetComponent<EnemyManager>().enemy_Template.speed;
+        patrolPointCurrent = Random.Range(0, 1);
     }
 
     // Update is called once per frame
@@ -42,13 +44,14 @@ public class EnemyPatrolling : MonoBehaviour
             }
 
             if (isTakeDamge && checkTimer <= timer)
-            {  movePatrol();
+            {
+                movePatrol();
                 Debug.Log("hit");
                 checkTimer += Time.deltaTime;
             }
             else
             {
-                _animator.SetBool("isWalk",true);
+                _animator.SetBool("isWalk", true);
                 movePatrol(speedMove);
                 isTakeDamge = false;
                 checkTimer = 0;
@@ -63,8 +66,8 @@ public class EnemyPatrolling : MonoBehaviour
             enemyMovement.Move(-1);
             if (Vector2.Distance(transform.position, patrolPoints[patrolPointCurrent]) < 0.2f)
             {
-                transform.localScale = new Vector3(-1, 1, 1);
                 patrolPointCurrent = 1;
+                transform.localScale = new Vector3(-1, 1, 1);
             }
         }
 
@@ -81,8 +84,8 @@ public class EnemyPatrolling : MonoBehaviour
 
     void inputArryPoint()
     {
-        patrolPoints[0] = transform.position + Vector3.left * 1.25f;
-        patrolPoints[1] = transform.position + Vector3.right * 1.25f;
+        patrolPoints[0] = transform.position + Vector3.left * 1.45f;
+        patrolPoints[1] = transform.position + Vector3.right * 1.45f;
     }
 
     public void isHurt(bool hit = false)
