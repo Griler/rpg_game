@@ -12,7 +12,8 @@ public class AttackController : MonoBehaviour
     private Animator _animator;
     private static readonly int IsAttack = Animator.StringToHash("isAttack");
 
-
+    public float speedAttackTimeCheck = 0.25f;
+    public float checkTimer = 0f;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,10 +23,12 @@ public class AttackController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetButtonDown("Fire1") && checkTimer >= speedAttackTimeCheck)
         {
             Attack();
+            checkTimer = 0;
         }
+        checkTimer++;
     }
 
     void Attack()
