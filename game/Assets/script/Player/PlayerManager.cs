@@ -10,7 +10,6 @@ public class PlayerManager : MonoBehaviour,IDamageable,IHeathSystemUi
     public int attack;
     public static bool isDie;
     private Animator _animator;
-    public Image heathBar;
 
     // Start is called before the first frame update
     void Start()
@@ -35,7 +34,7 @@ public class PlayerManager : MonoBehaviour,IDamageable,IHeathSystemUi
     public void displayHeath()
     {
         float heathRatio = (float)currentHeath / (float)maxHeath;
-        heathBar.fillAmount = Mathf.Clamp(heathRatio, 0f, 1f);
+       // heathBar.fillAmount = Mathf.Clamp(heathRatio, 0f, 1f);
         Debug.Log(Mathf.Clamp(heathRatio, 0f, 1f));
     }
     public int getDamage()

@@ -67,7 +67,6 @@ public class EnemyManager : MonoBehaviour, IDamageable, IHeathSystemUi
         else
         {
             _animator.SetBool("canAttack", false);
-            _animator.SetBool("lockVelocity", false);
         }
     }
 
@@ -77,7 +76,6 @@ public class EnemyManager : MonoBehaviour, IDamageable, IHeathSystemUi
         displayHeath();
         if (currentHeath > 0)
         {
-            this.GetComponent<EnemyPatrolling>().isHurt(true);
             _animator.SetTrigger(IsHurt);
             _animator.SetBool(IsWalk, false);
             return;

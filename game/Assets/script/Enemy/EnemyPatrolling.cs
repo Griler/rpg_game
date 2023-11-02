@@ -28,7 +28,7 @@ public class EnemyPatrolling : MonoBehaviour
         _animator = GetComponent<Animator>();
         _rigidbody2D = GetComponent<Rigidbody2D>();
         speedMove = GetComponent<EnemyManager>().enemy_Template.speed;
-        patrolPointCurrent = Random.Range(0, 1);
+        patrolPointCurrent = Random.Range(0, 2);
     }
 
     // Update is called once per frame
@@ -54,13 +54,14 @@ public class EnemyPatrolling : MonoBehaviour
                 _animator.SetBool("isWalk", true);
                 movePatrol(speedMove);
                 isTakeDamge = false;
-                checkTimer = 0;
             }
         }
     }
 
     void movePatrol(float speed = 0)
     {
+        changePatrolPoint();
+
         if (patrolPointCurrent == 0)
         {
             enemyMovement.Move(-1);
@@ -86,6 +87,12 @@ public class EnemyPatrolling : MonoBehaviour
     {
         patrolPoints[0] = transform.position + Vector3.left * 1.45f;
         patrolPoints[1] = transform.position + Vector3.right * 1.45f;
+    }
+
+    void changePatrolPoint()
+    {
+        if (transform.localScale.x == 1) patrolPointCurrent = 0;
+        if (transform.localScale.x == -1) patrolPointCurrent = 1;
     }
 
     public void isHurt(bool hit = false)
