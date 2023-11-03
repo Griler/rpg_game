@@ -12,7 +12,7 @@ public class AttackController : MonoBehaviour
     private Animator _animator;
     private static readonly int IsAttack = Animator.StringToHash("isAttack");
 
-    public float speedAttackTimeCheck = 0.25f;
+    public float speedAttackTimeCheck = 0.5f;
     public float checkTimer = 0f;
     // Start is called before the first frame update
     void Start()
@@ -28,7 +28,7 @@ public class AttackController : MonoBehaviour
             Attack();
             checkTimer = 0;
         }
-        checkTimer++;
+        checkTimer += Time.deltaTime;
     }
 
     void Attack()
