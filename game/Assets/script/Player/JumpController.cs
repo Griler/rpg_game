@@ -6,11 +6,13 @@ using UnityEngine;
 public class JumpController : MonoBehaviour
 {
     [SerializeField] private float jumpPower = 5;
+    [SerializeField] private float jumpPowerScaleTwo = 2;
     [SerializeField] private LayerMask groundLayer;
     private Animator _animator;
     private Rigidbody2D _rigidbody2D;
 
     private int jumpCounter = 1;
+    
     public float fallScaleOne = 1.5f;
     public float fallScaleTwo = 5f;
     private static readonly int IsJump = Animator.StringToHash("isJump");
@@ -27,7 +29,7 @@ public class JumpController : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         Jump();
         Fall();
@@ -45,14 +47,14 @@ public class JumpController : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.Space) && _rigidbody2D.velocity.y < 0 && jumpCounter == 1)
         {
-            _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x, jumpPower * 1.2f);
+            _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x, jumpPower * jumpPowerScaleTwo);
             jumpCounter--;
         }
     }
 
     void Fall()
     {
-        if (_rigidbody2D.velocity.y < 0)
+        if (_rigidbody2D.velocity.y < 0 && !isGround() || !isGround())
         {
             _rigidbody2D.velocity += Vector2.up * Physics2D.gravity.y * fallScaleOne*Time.deltaTime;
         }
@@ -69,7 +71,7 @@ public class JumpController : MonoBehaviour
         }
     }
 
-    bool isGround()
+    public bool isGround()
     {
         if (Physics2D.BoxCast(transform.position, boxSize, 0, -transform.up,
                 castDistane, groundLayer))
