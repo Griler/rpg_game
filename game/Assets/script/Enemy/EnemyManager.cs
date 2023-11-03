@@ -9,7 +9,7 @@ public class EnemyManager : MonoBehaviour, IDamageable, IHeathSystemUi
 {
     public HitBoxArea _hitBoxArea;
     public EnemyTemplate enemy_Template;
-    public Image heathBar;
+   // public Image heathBar;
 
     //public Text name;
 
@@ -77,7 +77,6 @@ public class EnemyManager : MonoBehaviour, IDamageable, IHeathSystemUi
         if (currentHeath > 0)
         {
             _animator.SetTrigger(IsHurt);
-            _animator.SetBool(IsWalk, false);
             return;
         }
 
@@ -87,7 +86,7 @@ public class EnemyManager : MonoBehaviour, IDamageable, IHeathSystemUi
     public void displayHeath()
     {
         float heathRatio = (float)currentHeath / (float)enemy_Template.maxHeath;
-        heathBar.fillAmount = Mathf.Clamp(heathRatio, 0f, 1f);
+       // heathBar.fillAmount = Mathf.Clamp(heathRatio, 0f, 1f);
         Debug.Log(Mathf.Clamp(heathRatio, 0f, 1f));
     }
     public int getDamage()
