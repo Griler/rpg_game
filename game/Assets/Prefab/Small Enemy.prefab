@@ -195,7 +195,7 @@ GameObject:
   - component: {fileID: 634337448424271113}
   m_Layer: 7
   m_Name: Small Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -232,11 +232,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hitBoxArea: {fileID: 4471469855019680065}
   enemy_Template: {fileID: 11400000, guid: eeefb990883bdaa4482a5d7da84ed61a, type: 2}
+  heathBar: {fileID: 7401292012402904484}
   _animator: {fileID: 0}
   attackDamge: 0
   currentHeath: 0
   speed: 0
-  time: 1.5
+  time: 1
   castDistane: 0.475
   boxSize: {x: 0.3, y: 0.1}
   groundLayer:
@@ -258,9 +259,10 @@ MonoBehaviour:
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 0, z: 0}
   speedMove: 0
+  patrolPointCurrent: 0
   boxSize: {x: 0.4, y: 0.55}
   enemyMovement: {fileID: 4540681792653949261}
-  timer: 3
+  timer: 0.5
 --- !u!114 &4540681792653949261
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -435,7 +437,7 @@ Transform:
   m_GameObject: {fileID: 3087514037919530312}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.007, y: 0.084, z: 0}
+  m_LocalPosition: {x: -0.98, y: 0.084, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -475,7 +477,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.45
+  m_Radius: 0.64
 --- !u!114 &3506972533763885552
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -515,7 +517,7 @@ Transform:
   m_GameObject: {fileID: 7100979200090533412}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.949, y: -0.097, z: 0}
+  m_LocalPosition: {x: -0.69, y: -0.097, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -564,7 +566,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.44, y: 0.47187757}
+  m_Size: {x: 3, y: 0.6}
   m_EdgeRadius: 0
 --- !u!114 &4471469855019680065
 MonoBehaviour:

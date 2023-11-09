@@ -16,7 +16,6 @@ GameObject:
   - component: {fileID: 8386664856888205030}
   - component: {fileID: 3172569305994305892}
   - component: {fileID: 8384676409581154189}
-  - component: {fileID: 3006244837383846117}
   - component: {fileID: 8712746549755041621}
   m_Layer: 8
   m_Name: Player
@@ -167,13 +166,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edc388b0da0fc464aae55c8458306458, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpPower: 6
+  jumpPower: 10
+  jumpPowerScaleTwo: 1.5
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
   fallScaleOne: 2
   fallScaleTwo: 5
-  castDistane: 0.39
+  castDistane: 0.475
   boxSize: {x: 0.3, y: 0.1}
 --- !u!114 &3172569305994305892
 MonoBehaviour:
@@ -192,8 +192,9 @@ MonoBehaviour:
   enemyLayer:
     serializedVersion: 2
     m_Bits: 128
-  speedAttackTimeCheck: 0.25
+  speedAttackTimeCheck: 0.5
   checkTimer: 0
+  isAttacking: 0
 --- !u!114 &8384676409581154189
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -209,21 +210,7 @@ MonoBehaviour:
   maxHeath: 100
   currentHeath: 0
   attack: 0
---- !u!114 &3006244837383846117
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 587609619708010086}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae877ca43083f8a4da938078b2f8117f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHeath: 100
-  currentHeath: 0
-  attack: 0
+  heathBar: {fileID: 0}
 --- !u!70 &8712746549755041621
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -256,8 +243,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.01748003, y: 0.018601716}
-  m_Size: {x: 0.4305646, y: 0.90413845}
+  m_Offset: {x: 0, y: -0.01}
+  m_Size: {x: 0.45, y: 0.95}
   m_Direction: 0
 --- !u!1 &6400077398763351230
 GameObject:
@@ -275,7 +262,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &981352168300417784
 Transform:
   m_ObjectHideFlags: 0
@@ -285,7 +272,7 @@ Transform:
   m_GameObject: {fileID: 6400077398763351230}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.04, y: -0.44, z: 0}
+  m_LocalPosition: {x: -0.012, y: -0.41, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -323,7 +310,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.031419754, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -334,7 +321,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.27393126, y: 0.05}
+  m_Size: {x: 0.5628395, y: 0.1}
   m_EdgeRadius: 0
 --- !u!1 &8956295015970302458
 GameObject:
@@ -363,7 +350,7 @@ Transform:
   m_GameObject: {fileID: 8956295015970302458}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.97, y: 0.04, z: 0}
+  m_LocalPosition: {x: 0.95, y: 0.07, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -403,7 +390,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.68
 --- !u!114 &2368456643210910381
 MonoBehaviour:
   m_ObjectHideFlags: 0
