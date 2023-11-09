@@ -19,9 +19,6 @@ public class EnemyMovement : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
-    }
 
     public void Move(float direction = 1)
     {

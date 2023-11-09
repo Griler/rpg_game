@@ -9,7 +9,7 @@ public class EnemyPatrolling : MonoBehaviour
     public Vector3[] patrolPoints;
     private Rigidbody2D _rigidbody2D;
     public float speedMove;
-    public static int patrolPointCurrent;
+    public int patrolPointCurrent;
     private Animator _animator;
 
     private bool isTakeDamge = false;

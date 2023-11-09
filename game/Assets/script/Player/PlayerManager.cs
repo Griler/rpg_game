@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,13 +11,13 @@ public class PlayerManager : MonoBehaviour,IDamageable,IHeathSystemUi
     public int attack;
     public static bool isDie;
     private Animator _animator;
-
+    public Image heathBar;
     // Start is called before the first frame update
     void Start()
     {
         currentHeath = maxHeath;
         _animator = GetComponent<Animator>();
-        attack = GetComponent<AttackController>().attackDamge;
+        attack = GetComponent<PlayerAttack>().attackDamge;
         isDie = false;
     }
 
@@ -26,6 +27,7 @@ public class PlayerManager : MonoBehaviour,IDamageable,IHeathSystemUi
         displayHeath();
         if (currentHeath > 0)
         {   
+            _animator.SetTrigger("isHurt");
             return;
         }
         Die();
@@ -34,7 +36,7 @@ public class PlayerManager : MonoBehaviour,IDamageable,IHeathSystemUi
     public void displayHeath()
     {
         float heathRatio = (float)currentHeath / (float)maxHeath;
-       // heathBar.fillAmount = Mathf.Clamp(heathRatio, 0f, 1f);
+        heathBar.fillAmount = Mathf.Clamp(heathRatio, 0f, 1f);
         Debug.Log(Mathf.Clamp(heathRatio, 0f, 1f));
     }
     public int getDamage()
@@ -46,7 +48,15 @@ public class PlayerManager : MonoBehaviour,IDamageable,IHeathSystemUi
     void Die()
     {
         isDie = true;
+        //_animator.SetBool("isDie",true);
         _animator.Play("Death");
     }
-    // Update is called once per frame
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Trap") || other.gameObject.CompareTag("Water"))
+        {
+            Die();
+        }
+    }
 }

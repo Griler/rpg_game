@@ -9,8 +9,8 @@ public class EnemyManager : MonoBehaviour, IDamageable, IHeathSystemUi
 {
     public HitBoxArea _hitBoxArea;
     public EnemyTemplate enemy_Template;
-   // public Image heathBar;
-
+    public Image heathBar;
+    
     //public Text name;
 
     #region Status Enemy
@@ -21,6 +21,7 @@ public class EnemyManager : MonoBehaviour, IDamageable, IHeathSystemUi
     public int currentHeath;
     public float speed;
     public float time = 0.75f;
+    private bool isDie = false;
 
     #endregion
 
@@ -29,7 +30,7 @@ public class EnemyManager : MonoBehaviour, IDamageable, IHeathSystemUi
     public float castDistane = 0.25f;
     public Vector2 boxSize = new Vector2(0.3f, 0.1f);
     public LayerMask groundLayer;
-
+        
     #endregion
 
     #region stringAnimator
@@ -77,6 +78,7 @@ public class EnemyManager : MonoBehaviour, IDamageable, IHeathSystemUi
         if (currentHeath > 0)
         {
             _animator.SetTrigger(IsHurt);
+            isDie = true;
             return;
         }
 
@@ -86,9 +88,10 @@ public class EnemyManager : MonoBehaviour, IDamageable, IHeathSystemUi
     public void displayHeath()
     {
         float heathRatio = (float)currentHeath / (float)enemy_Template.maxHeath;
-       // heathBar.fillAmount = Mathf.Clamp(heathRatio, 0f, 1f);
+        heathBar.fillAmount = Mathf.Clamp(heathRatio, 0f, 1f);
         Debug.Log(Mathf.Clamp(heathRatio, 0f, 1f));
     }
+
     public int getDamage()
     {
         return attackDamge;
@@ -97,7 +100,7 @@ public class EnemyManager : MonoBehaviour, IDamageable, IHeathSystemUi
     void Die()
     {
         _animator.SetBool(IsDie, true);
-        _animator.SetBool(IsWalk, false);
+        _animator.Play("Enemy_Death");
         StartCoroutine(setTimeSetActiveFalse(time));
     }
 
@@ -117,8 +120,6 @@ public class EnemyManager : MonoBehaviour, IDamageable, IHeathSystemUi
     private IEnumerator setTimeSetActiveFalse(float timer)
     {
         yield return new WaitForSeconds(timer);
-        _animator.SetBool("isDie", false);
-        //Turn My game object that is set to false(off) to True(on).
         this.gameObject.SetActive(false);
     }
 }

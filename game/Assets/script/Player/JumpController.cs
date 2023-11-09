@@ -29,16 +29,19 @@ public class JumpController : MonoBehaviour
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
-        Jump();
-        Fall();
+        if (!PlayerManager.isDie)
+        {
+            Jump();
+            Fall();
+        }
         _animator.SetFloat(YVelocity, _rigidbody2D.velocity.y);
     }
 
     void Jump()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && jumpCounter > 0 && isGround())
+        if (Input.GetKeyDown(KeyCode.Space) && isGround() )
         {
             // gán true để thực hiện animation nhảy
             _animator.SetBool(IsJump, true);
@@ -56,7 +59,7 @@ public class JumpController : MonoBehaviour
     {
         if (_rigidbody2D.velocity.y < 0 && !isGround() || !isGround())
         {
-            _rigidbody2D.velocity += Vector2.up * Physics2D.gravity.y * fallScaleOne*Time.deltaTime;
+            _rigidbody2D.velocity += Vector2.up * Physics2D.gravity.y * fallScaleOne * Time.deltaTime;
         }
 
         if (_rigidbody2D.velocity.y < 0 && jumpCounter == 0)
