@@ -13,11 +13,10 @@ public class demo : StateMachineBehaviour
 
     //OnStateUpdate is called before OnStateUpdate is called on any state inside this state machine
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    {
-        Debug.Log(PlayerAttack.instance.isAttacking);
+    {          
+        animator.SetBool("isRun",false);
         if (PlayerAttack.instance.isAttacking && Input.GetButtonDown("Fire1"))
         {
-            Debug.Log("hee");
             animator.SetBool("isAttack2",true);
         }
     }

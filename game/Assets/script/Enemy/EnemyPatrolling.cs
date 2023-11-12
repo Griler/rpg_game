@@ -6,15 +6,13 @@ using Random = UnityEngine.Random;
 
 public class EnemyPatrolling : MonoBehaviour
 {
-    public Vector3[] patrolPoints;
+    public Vector3[] patrolPoints = new Vector3[2];
     private Rigidbody2D _rigidbody2D;
     public float speedMove;
     public int patrolPointCurrent;
     private Animator _animator;
-
     private bool isTakeDamge = false;
     public Vector2 boxSize = new Vector2(0.4f, 0.55f);
-
     public EnemyMovement enemyMovement;
 
     public float timer = 0.5f;
@@ -22,13 +20,23 @@ public class EnemyPatrolling : MonoBehaviour
     bool onetime = true;
     private static readonly int IsHurt = Animator.StringToHash("isHurt");
 
+    private void Awake()
+    {
+        SaveSytem.EnemyPatrollingArr.Add(this);
+        patrolPointCurrent = Random.Range(0, 10);
+        if (patrolPointCurrent % 2 == 0) transform.localScale = new Vector3(1, 1, 1);
+        else
+        {
+            transform.localScale = new Vector3(-1, 1, 1);
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         _animator = GetComponent<Animator>();
         _rigidbody2D = GetComponent<Rigidbody2D>();
         speedMove = GetComponent<EnemyManager>().enemy_Template.speed;
-        patrolPointCurrent = Random.Range(0, 2);
     }
 
     // Update is called once per frame
@@ -85,8 +93,15 @@ public class EnemyPatrolling : MonoBehaviour
 
     void inputArryPoint()
     {
-        patrolPoints[0] = transform.position + Vector3.left * 1.45f;
-        patrolPoints[1] = transform.position + Vector3.right * 1.45f;
+        if (patrolPoints == null) return;
+        else
+        {
+            patrolPoints = new Vector3[2]
+            {
+                patrolPoints[0] = transform.position + Vector3.left * 1.45f,
+                patrolPoints[1] = transform.position + Vector3.right * 1.45f
+            };
+        }
     }
 
     void changePatrolPoint()

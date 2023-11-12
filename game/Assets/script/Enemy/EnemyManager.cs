@@ -10,9 +10,7 @@ public class EnemyManager : MonoBehaviour, IDamageable, IHeathSystemUi
     public HitBoxArea _hitBoxArea;
     public EnemyTemplate enemy_Template;
     public Image heathBar;
-    
     //public Text name;
-
     #region Status Enemy
 
     SpriteRenderer sprite;
@@ -22,7 +20,7 @@ public class EnemyManager : MonoBehaviour, IDamageable, IHeathSystemUi
     public float speed;
     public float time = 0.75f;
     private bool isDie = false;
-
+    private Rigidbody2D _rigidbody2D;
     #endregion
 
     #region check ground varriable
@@ -51,6 +49,8 @@ public class EnemyManager : MonoBehaviour, IDamageable, IHeathSystemUi
         currentHeath = enemy_Template.maxHeath;
         attackDamge = enemy_Template.attackDamge;
         speed = enemy_Template.speed;
+        _rigidbody2D = GetComponent<Rigidbody2D>();
+        SaveSytem.EnemyDatas.Add(this);
     }
 
     void Update()
@@ -99,9 +99,12 @@ public class EnemyManager : MonoBehaviour, IDamageable, IHeathSystemUi
 
     void Die()
     {
+        _rigidbody2D.simulated = false;
+        PlayerManager.player_score++;
         _animator.SetBool(IsDie, true);
         _animator.Play("Enemy_Death");
         StartCoroutine(setTimeSetActiveFalse(time));
+        SaveSytem.EnemyDatas.Remove(this);
     }
 
     public bool isGround()
@@ -122,4 +125,6 @@ public class EnemyManager : MonoBehaviour, IDamageable, IHeathSystemUi
         yield return new WaitForSeconds(timer);
         this.gameObject.SetActive(false);
     }
+    
+    
 }
