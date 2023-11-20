@@ -10,7 +10,8 @@ public class EndPoint : MonoBehaviour
     {
         if(other.gameObject.CompareTag("Player"))
         {
-            Debug.Log("hoàn thành màn");
+            this.transform.GetChild(0).gameObject.SetActive(true);
+            Time.timeScale = 0;
         }
     }
 }

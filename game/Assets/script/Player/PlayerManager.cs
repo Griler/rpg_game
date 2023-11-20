@@ -19,18 +19,18 @@ public class PlayerManager : MonoBehaviour, IDamageable, IHeathSystemUi
     private void Awake()
     {
         instance = this;
+        currentHeath = maxHeath;
     }
-
-
+    
     void Start()
     {
-        currentHeath = maxHeath;
         _animator = GetComponent<Animator>();
         attack = GetComponent<PlayerAttack>().attackDamge;
         heathBar = GameObject.Find("HeathBarPlayer").GetComponent<Image>();
         isDie = false;
         time = 0;
         player_score = 0;
+        displayHeath();
     }
 
     #region damage and display heath methods
@@ -52,7 +52,6 @@ public class PlayerManager : MonoBehaviour, IDamageable, IHeathSystemUi
     {
         float heathRatio = (float)currentHeath / (float)maxHeath;
         heathBar.fillAmount = Mathf.Clamp(heathRatio, 0f, 1f);
-        Debug.Log(Mathf.Clamp(heathRatio, 0f, 1f));
     }
     public int getDamage()
     {

@@ -215,7 +215,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Button exit e
+    path: Button exit
   m_FloatCurves:
   - serializedVersion: 2
     curve:
@@ -523,7 +523,7 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     - serializedVersion: 2
-      path: 2046994914
+      path: 1260024989
       attribute: 3
       script: {fileID: 0}
       typeID: 4
@@ -1497,7 +1497,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalScale.x
-    path: Button exit e
+    path: Button exit
     classID: 224
     script: {fileID: 0}
     flags: 0
@@ -1527,7 +1527,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalScale.y
-    path: Button exit e
+    path: Button exit
     classID: 224
     script: {fileID: 0}
     flags: 0
@@ -1557,7 +1557,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalScale.z
-    path: Button exit e
+    path: Button exit
     classID: 224
     script: {fileID: 0}
     flags: 0

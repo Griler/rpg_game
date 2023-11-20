@@ -5,7 +5,7 @@ using UnityEngine;
 public class LoadDataScene : MonoBehaviour
 {
     // Start is called before the first frame update
-    void Awake()
+    void Start()
     {
         GameManager.instance.InstantiateOject();
     }
