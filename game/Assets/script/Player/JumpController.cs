@@ -12,14 +12,14 @@ public class JumpController : MonoBehaviour
     private Rigidbody2D _rigidbody2D;
 
     private int jumpCounter = 1;
-    
+
     public float fallScaleOne = 1.5f;
     public float fallScaleTwo = 5f;
     private static readonly int IsJump = Animator.StringToHash("isJump");
     private static readonly int YVelocity = Animator.StringToHash("yVelocity");
 
     public float castDistane = 0.25f;
-    public Vector2 boxSize = new Vector2(0.3f,0.1f);
+    public Vector2 boxSize = new Vector2(0.3f, 0.3f);
 
     // Start is called before the first frame update
     void Start()
@@ -36,16 +36,16 @@ public class JumpController : MonoBehaviour
             Jump();
             Fall();
         }
+
         _animator.SetFloat(YVelocity, _rigidbody2D.velocity.y);
     }
 
     void Jump()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && isGround() )
+        Debug.Log(isGround());
+        if (Input.GetKeyDown(KeyCode.Space) && isGround())
         {
-            // gán true để thực hiện animation nhảy
             _animator.SetBool(IsJump, true);
-            // di chuuyen gameObject
             _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x, jumpPower);
         }
         else if (Input.GetKeyDown(KeyCode.Space) && _rigidbody2D.velocity.y < 0 && jumpCounter == 1)
@@ -67,7 +67,9 @@ public class JumpController : MonoBehaviour
             _rigidbody2D.velocity += Vector2.up * Physics2D.gravity.y * fallScaleTwo * Time.deltaTime;
         }
 
-        if (isGround() && _rigidbody2D.velocity.y == 0)
+        if (isGround() && _rigidbody2D.velocity.y < 0.1 
+            //|| _animator.GetBool(IsJump) && isGround()
+            )
         {
             _animator.SetBool(IsJump, false);
             jumpCounter = 1;

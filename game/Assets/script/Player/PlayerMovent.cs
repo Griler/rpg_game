@@ -23,6 +23,11 @@ public class NewBehaviourScript : MonoBehaviour
 
     void moveCharater()
     {
+        if (_animator.GetBool("lockVelocity"))
+        {
+            _rigidbody2D.velocity = new Vector2(0, 0);
+            return;
+        } 
         if (!PlayerManager.isDie)
         {
             float horizontalMove = Input.GetAxisRaw("Horizontal");
