@@ -4,27 +4,27 @@ using UnityEngine;
 
 public class demo : StateMachineBehaviour
 {
-    
-    // OnStateEnter is called before OnStateEnter is called on any state inside this state machine
-    override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        PlayerAttack.instance.isAttacking = true;
+        animator.SetBool("lockVelocity",true);
     }
 
+    // OnStateEnter is called before OnStateEnter is called on any state inside this state machine
     //OnStateUpdate is called before OnStateUpdate is called on any state inside this state machine
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {          
         animator.SetBool("isRun",false);
-        if (PlayerAttack.instance.isAttacking && Input.GetButtonDown("Fire1"))
+        if (Input.GetButtonDown("Fire1"))
         {
-            animator.SetBool("isAttack2",true);
+            animator.SetTrigger("isAttack2");
+            animator.Play("attack_2");
         }
     }
 
     // OnStateExit is called before OnStateExit is called on any state inside this state machine
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        PlayerAttack.instance.isAttacking = false;
+        animator.SetBool("lockVelocity",false);
     }
 
     // OnStateMove is called before OnStateMove is called on any state inside this state machine
@@ -40,14 +40,7 @@ public class demo : StateMachineBehaviour
     //}
 
     // OnStateMachineEnter is called when entering a state machine via its Entry Node
-    //override public void OnStateMachineEnter(Animator animator, int stateMachinePathHash)
-    //{
-    //    
-    //}
 
     // OnStateMachineExit is called when exiting a state machine via its Exit Node
-    //override public void OnStateMachineExit(Animator animator, int stateMachinePathHash)
-    //{
-    //    
-    //}
+
 }

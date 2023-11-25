@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: d0adeb86fa3b81046b3bf7b8298b3322
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - _hitBoxArea: {instanceID: 0}
+  - enemy_Template: {fileID: 11400000, guid: eeefb990883bdaa4482a5d7da84ed61a, type: 2}
+  - _animator: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
