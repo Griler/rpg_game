@@ -9,6 +9,7 @@ TagManager:
   - Trap
   - Water
   - UI
+  - Boss
   layers:
   - Default
   - TransparentFX
@@ -22,8 +23,8 @@ TagManager:
   - HitBoxArea
   - HitBoxPlayer
   - HitBoxEnemy
-  - 
-  - 
+  - EnemyDatas
+  - Boss
   - 
   - 
   - 

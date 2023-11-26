@@ -3182,9 +3182,9 @@ GameObject:
   - component: {fileID: 5622741711579316453}
   - component: {fileID: 1078169842258371307}
   - component: {fileID: 5622741711579316454}
-  m_Layer: 7
+  m_Layer: 13
   m_Name: Boss
-  m_TagString: Enemy
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4841,7 +4841,7 @@ MonoBehaviour:
   currentHeath: 0
   player: {fileID: 0}
   checkTimer: 0
-  coolDownTime: 2
+  coolDownTime: 1.5
   spell: {fileID: 5763096596589519257, guid: ee40ff26c8daca9429689cf2c9d20879, type: 3}
   castSpellCheck: 0
 --- !u!224 &5741717316697318679

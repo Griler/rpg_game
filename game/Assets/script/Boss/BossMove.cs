@@ -45,7 +45,6 @@ public class BossMove : StateMachineBehaviour
     {
         if (player.position.x > rb.position.x)
         {   
-            Debug.Log('k');
             rb.transform.localScale = new Vector3(1f, 1, 1);
         }
         else if (player.position.x < rb.position.x)

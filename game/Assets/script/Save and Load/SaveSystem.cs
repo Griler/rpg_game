@@ -42,6 +42,7 @@ public static class SaveSystem
         Debug.Log("save continue game data enemy: " + path);
         List<EnemyData> datas = new List<EnemyData>();
         findEnemy();
+        if(EnemyDatas.Count == 0)return;
         Debug.Log("list quái : " + EnemyDatas.Count);
         for (int i = 0; i < EnemyDatas.Count; i++)
         {
