@@ -11,6 +11,6 @@ public class EnemyTemplate : ScriptableObject
     public Sprite sprite;
     
     public int attackDamge;
-    public int maxHeath = 100;
+    public int maxHeath;
     public float speed;
 }

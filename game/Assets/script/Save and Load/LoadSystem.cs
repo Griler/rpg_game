@@ -57,9 +57,7 @@ public class LoadSystem
     }
 */
     public static EnemyData[] LoadEnemyFromDataSave()
-    {
-        if (GameManager.instance.isNewGame) return new EnemyData[0];
-        else
+    { 
         {  // GameManager.instance.setActiveEnemy();
             string path = Application.dataPath + PATH_DATA_ENEMY;
             path = Application.dataPath + PATH_DATA_ENEMY;

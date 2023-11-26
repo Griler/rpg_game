@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 3172569305994305892}
   - component: {fileID: 8384676409581154189}
   - component: {fileID: 8712746549755041621}
+  - component: {fileID: 2419332505271964638}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -192,7 +193,7 @@ MonoBehaviour:
   enemyLayer:
     serializedVersion: 2
     m_Bits: 128
-  speedAttackTimeCheck: 0.5
+  speedAttackTimeCheck: 0.8
   checkTimer: 0
   isAttacking: 0
 --- !u!114 &8384676409581154189
@@ -246,6 +247,20 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: -0.01}
   m_Size: {x: 0.45, y: 0.95}
   m_Direction: 0
+--- !u!114 &2419332505271964638
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 587609619708010086}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc8051d1fc6f91c4f98df5cbe1c16d4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dashDistance: 5
+  dashTime: 0.5
 --- !u!1 &6400077398763351230
 GameObject:
   m_ObjectHideFlags: 0
@@ -285,7 +300,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6400077398763351230}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -350,7 +365,7 @@ Transform:
   m_GameObject: {fileID: 8956295015970302458}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.95, y: 0.07, z: 0}
+  m_LocalPosition: {x: 0.56, y: 0.38, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -390,7 +405,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.68
+  m_Radius: 0.75
 --- !u!114 &2368456643210910381
 MonoBehaviour:
   m_ObjectHideFlags: 0

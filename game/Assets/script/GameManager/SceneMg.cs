@@ -8,9 +8,12 @@ public class SceneMg : MonoBehaviour
     public GameObject settings;
     public GameObject PauseGameObject;
 
-    private void Awake()
+    private void OnEnable()
     {
-        if(!GameManager.instance.isNewGame)GameManager.instance.setActiveEnemy();
+        if (GameManager.instance.isNewGame==false)
+        {   Debug.Log(GameManager.instance.isNewGame);
+            GameManager.instance.setActiveEnemy();
+        }
     }
 
     private void Update()
@@ -24,6 +27,7 @@ public class SceneMg : MonoBehaviour
     public void pauseGame()
     {
         PauseGameObject.SetActive(true);
+        settings.SetActive(false);
         Time.timeScale = 0;
     }
     

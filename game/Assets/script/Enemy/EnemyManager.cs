@@ -50,7 +50,6 @@ public class EnemyManager : MonoBehaviour, IDamageable, IHeathSystemUi
         attackDamge = enemy_Template.attackDamge;
         speed = enemy_Template.speed;
         _rigidbody2D = GetComponent<Rigidbody2D>();
-        SaveSystem.EnemyDatas.Add(this);
     }
 
     void Update()
@@ -104,7 +103,7 @@ public class EnemyManager : MonoBehaviour, IDamageable, IHeathSystemUi
         _animator.SetBool(IsDie, true);
         _animator.Play("Enemy_Death");
         StartCoroutine(setTimeSetActiveFalse(time));
-        SaveSystem.EnemyDatas.Remove(this);
+        //SaveSystem.EnemyDatas.Remove(this);
     }
 
     public bool isGround()

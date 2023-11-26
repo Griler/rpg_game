@@ -22,7 +22,7 @@ public class EnemyPatrolling : MonoBehaviour
 
     private void Awake()
     {
-        SaveSystem.EnemyPatrollingArr.Add(this);
+       // SaveSystem.EnemyPatrollingArr.Add(this);
         patrolPointCurrent = Random.Range(0, 10);
         if (patrolPointCurrent % 2 == 0) transform.localScale = new Vector3(1, 1, 1);
         else

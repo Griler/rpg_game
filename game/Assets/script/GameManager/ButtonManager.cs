@@ -47,12 +47,16 @@ public class ButtonManager : MonoBehaviour
 
     public static void btnResetGame()
     {
-        btnContinueGame();
+        PlayerData data = LoadSystem.LoadPlayer();
+        if (data == null) return;
+        GameManager.instance.isNewGame = false;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         Time.timeScale = 1;
     }
 
     public static void btnNextStage()
     {
+        
         string stageName = SceneManager.GetActiveScene().name;
         int stringLen = stageName.Length;
         string stageString = "" + stageName[stringLen - 3];
@@ -66,5 +70,8 @@ public class ButtonManager : MonoBehaviour
             stageLevel = 1;
         }
         Debug.Log(String.Format("stage {0}-{1}", stage, stageLevel));
+        SceneManager.LoadScene(String.Format("stage {0}-{1}",stage,stageLevel));
+        GameManager.instance.isNewGame = true;
+        Time.timeScale = 1;
     }
 }

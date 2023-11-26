@@ -42,7 +42,6 @@ public class JumpController : MonoBehaviour
 
     void Jump()
     {
-        Debug.Log(isGround());
         if (Input.GetKeyDown(KeyCode.Space) && isGround())
         {
             _animator.SetBool(IsJump, true);

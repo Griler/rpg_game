@@ -3,29 +3,50 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class FlyGround:MonoBehaviour
-{
-    public Animator _animator  ;
-    public virtual void Awake( ){}
-}
-public class PlayAnimation : FlyGround
+public class PlayAnimation : MonoBehaviour
 {
     public string stateName;
     private Rigidbody2D _rigidbody2D;
-    public override void Awake()
+    public Transform posA;
+    public Transform posB;
+    private Vector2 targetPos;
+    private float speed = 2;
+
+    public void Start()
     {
-        _rigidbody2D = GetComponent<Rigidbody2D>();
-        _animator = GetComponent<Animator>();
-        _animator.Play(stateName);
+        targetPos = posA.position;
+        Debug.Log(targetPos);
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
+    private void Update()
+    {
+        if (Vector2.Distance(transform.position, posA.position) < 0.01)
+        {
+            targetPos = posB.position;
+        }
+
+        if (Vector2.Distance(transform.position, posB.position) < 0.01)
+        {
+            targetPos = posA.position;
+        }
+
+        transform.position = Vector2.MoveTowards(transform.position,
+            targetPos, speed * Time.deltaTime);
+    }
+
+    private void OnCollisionStay2D(Collision2D other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            Debug.Log("chạm");
-            other.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(other.rigidbody.velocity.x,
-                this._rigidbody2D.velocity.y);
+            other.transform.SetParent(this.transform);
+            Debug.Log("fdsdsd");
+        }
+    }    private void OnCollisionExit2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            other.transform.SetParent(null);
+            Debug.Log("fdsdsd");
         }
     }
 }

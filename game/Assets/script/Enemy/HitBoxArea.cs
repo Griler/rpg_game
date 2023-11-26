@@ -29,14 +29,12 @@ public class HitBoxArea : MonoBehaviour
         { 
             if (other.transform.position.x > this.transform.parent.position.x)
             {   
-                Debug.Log(other.transform.position.x + ' '+ this.transform.parent.position.x );
                 beforeChangeScale = this.transform.parent.localScale;
                 this.transform.parent.localScale = new Vector3(-1f, 1, 1);
 
             }
             else if (other.transform.position.x < this.transform.parent.position.x)
             {
-                Debug.Log(other.transform.position.x + ' '+ this.transform.parent.position.x );
                 beforeChangeScale = this.transform.parent.localScale;
                 this.transform.parent.localScale = new Vector3( 1f, 1, 1);
 
